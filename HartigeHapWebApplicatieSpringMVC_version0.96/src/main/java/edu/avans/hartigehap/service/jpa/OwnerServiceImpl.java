@@ -20,40 +20,45 @@ import edu.avans.hartigehap.repository.*;
 import edu.avans.hartigehap.service.*;
 import com.google.common.collect.Lists;
 
-
-
 @Service("ownerService")
 @Repository
 @Transactional
-public class OwnerServiceImpl implements OwnerService {
-	@Autowired private OwnerRepository ownerRepository;
-	
+public class OwnerServiceImpl implements OwnerService   {
+	final Logger logger = LoggerFactory.getLogger(OwnerServiceImpl.class);
+	@Autowired 
+	private OwnerRepository ownerRepository;
 	@Override
 	public List<Owner> findAll() {
-		return Lists.newArrayList(ownerRepository.findAll());
+		// TODO Auto-generated method stub
+		return null;
 	}
+public OwnerRepository getOwnerRepository() {
+	return ownerRepository;
+}
+public void setOwnerRepository(OwnerRepository ownerRepository) {
+	this.ownerRepository = ownerRepository;
+}
 
 	@Override
-	public Owner findById(String id) {
-		// TODO Auto-generated method stub
-		return ownerRepository.findOne(id);
+	public Owner findById(Long id) {		
+		return ownerRepository.findOne(id);		
 	}
 
 	@Override
 	public List<Owner> findByName(String name) {
-		return ownerRepository.findByName(name);
+		return Lists.newArrayList(ownerRepository.findByName(name));
 	}
 
 	@Override
 	public Owner save(Owner owner) {
+		
 		return ownerRepository.save(owner);
 	}
 
 	@Override
 	public void delete(Owner owner) {
-		ownerRepository.delete(owner);
+		 ownerRepository.delete(owner);		
 	}
-	
-	
+
 }
 

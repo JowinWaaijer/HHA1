@@ -12,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.avans.hartigehap.domain.*;
 import edu.avans.hartigehap.repository.*;
 import edu.avans.hartigehap.service.*;
+import edu.avans.hartigehap.customer.control.CustomerController;
+import edu.avans.hartigehap.customer.model.Customer;
+
 import com.google.common.collect.Lists;
 import org.joda.time.DateTime;
 
@@ -120,9 +123,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 		menu.getDrinks().add(d2);
 		
 		byte[] photo = new byte[]{127,-128,0};
-		Customer c1 = new Customer("piet", "bakker", new DateTime(), 1, "description", photo, Arrays.asList(new Restaurant[]{restaurant}));
-		Customer c2 = new Customer("piet", "bakker", new DateTime(), 1, "description", photo, Arrays.asList(new Restaurant[]{restaurant}));
-		Customer c3 = new Customer("piet", "bakker", new DateTime(), 1, "description", photo, Arrays.asList(new Restaurant[]{restaurant}));
+		CustomerController cc = CustomerController.getInstance();
+		Customer c1 = cc.newCustomer("Dater","piet", "bakker", new DateTime(), 1, "description", photo, Arrays.asList(new Restaurant[]{restaurant}));
+		Customer c2 =cc.newCustomer("Dater","piet", "bakker", new DateTime(), 1, "description", photo, Arrays.asList(new Restaurant[]{restaurant}));
+		Customer c3 =cc.newCustomer("Dater","piet", "bakker", new DateTime(), 1, "description", photo, Arrays.asList(new Restaurant[]{restaurant}));
 
 		restaurant.setCustomers(Arrays.asList(new Customer[]{c1, c2, c3}));
 		
@@ -177,9 +181,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 		menu.getMeals().add(meal6);
 		
 		byte[] photo = new byte[]{127,-128,0};
-		Customer c1 = new Customer("meike", "makkels", new DateTime(), 1, "description", photo, Arrays.asList(new Restaurant[]{restaurant}));
-		Customer c2 = new Customer("meike", "makkels", new DateTime(), 1, "description", photo, Arrays.asList(new Restaurant[]{restaurant}));
-		Customer c3 = new Customer("meike", "makkels", new DateTime(), 1, "description", photo, Arrays.asList(new Restaurant[]{restaurant}));
+		CustomerController cc = CustomerController.getInstance();
+		
+		Customer c1 = cc.newCustomer("Dater","meike", "makkels", new DateTime(), 1, "description", photo, Arrays.asList(new Restaurant[]{restaurant}));
+		Customer c2 = cc.newCustomer("Dater","meike", "makkels", new DateTime(), 1, "description", photo, Arrays.asList(new Restaurant[]{restaurant}));
+		Customer c3 = cc.newCustomer("Dater","meike", "makkels", new DateTime(), 1, "description", photo, Arrays.asList(new Restaurant[]{restaurant}));
 
 		restaurant.setCustomers(Arrays.asList(new Customer[]{c1, c2, c3}));
 

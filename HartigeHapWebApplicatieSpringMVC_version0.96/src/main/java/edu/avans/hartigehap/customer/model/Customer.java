@@ -1,4 +1,4 @@
-package edu.avans.hartigehap.domain;
+package edu.avans.hartigehap.customer.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,32 +28,33 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import edu.avans.hartigehap.domain.Bill;
+import edu.avans.hartigehap.domain.Restaurant;
+
 /**
  * 
  * @author Erco
  */
 @Entity
-// optional
 @Table(name = "CUSTOMERS")
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
-public class Customer implements Serializable {
-	private static final long serialVersionUID = 1L;
-	private Collection<Restaurant> restaurants = new ArrayList<Restaurant>();
-	private Long customerCardId;
-	private int version;
-	private Collection<Bill> bills = new ArrayList<Bill>();
-	private int partySize;
-	private String firstName;
-	private String lastName;
-	private DateTime birthDate;
-	private String description;
-	private byte[] photo;
+
+public abstract class Customer implements Serializable {
+	public static final long serialVersionUID = 1L;
+	public Collection<Restaurant> restaurants = new ArrayList<Restaurant>();
+	public Long customerCardId;
+	public int version;
+	public Collection<Bill> bills = new ArrayList<Bill>();
+	public int partySize;
+	public String firstName;
+	public String lastName;
+	public DateTime birthDate;
+	public String description;
+	public byte[] photo;
 
 	public Customer() {
 
 	}
-
-	// TODO not complete (bills)
 	public Customer(String firstName, String lastName, DateTime birthDate,
 			int partySize, String description, byte[] photo,
 			Collection<Restaurant> restaurants) {
@@ -65,7 +66,6 @@ public class Customer implements Serializable {
 		this.photo = photo;
 		this.restaurants = restaurants;
 	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "CUSTOMER_ID")
@@ -126,7 +126,7 @@ public class Customer implements Serializable {
 	}
 
 	@NotEmpty(message = "{validation.lastname.NotEmpty.message}")
-	@Size(min = 1, max = 40, message = "{validation.lastname.Size.message}")
+	@Size(min = 1, max = 40, message = "{validation.lastname.Size.message}")	
 	public String getLastName() {
 		return lastName;
 	}

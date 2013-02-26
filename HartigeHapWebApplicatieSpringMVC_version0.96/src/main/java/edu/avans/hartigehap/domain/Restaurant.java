@@ -4,11 +4,16 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.persistence.*;
 
+
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import edu.avans.hartigehap.customer.model.Customer;
 
 /**
  * 
@@ -25,6 +30,7 @@ public class Restaurant implements Serializable {
 	private Collection<DiningTable> diningTables = new ArrayList<DiningTable>();
 	private Collection<FoodCategory> foodCategories = new ArrayList<FoodCategory>();
 	private Collection<Customer> customers = new ArrayList<Customer>();
+	private List<Owner> owners;
 	private Menu menu;
 	private String imageFileName;
 
@@ -89,6 +95,15 @@ public class Restaurant implements Serializable {
 	}
 
 	@ManyToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "restaurants")
+	public List<Owner> getowners() {
+		return owners;
+	}
+
+	public void setOwners(List<Owner> owners) {
+		this.owners = owners;
+	}
+
+	@ManyToMany(cascade = javax.persistence.CascadeType.ALL, mappedBy = "restaurants")
 	public Collection<Customer> getCustomers() {
 		return customers;
 	}
@@ -97,6 +112,8 @@ public class Restaurant implements Serializable {
 		this.customers = customers;
 	}
 
+	
+	
 
 	public String getImageFileName() {
 		return imageFileName;
