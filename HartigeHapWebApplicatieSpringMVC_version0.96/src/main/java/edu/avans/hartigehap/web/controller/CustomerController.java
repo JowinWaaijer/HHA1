@@ -20,6 +20,9 @@ import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+
+import edu.avans.hartigehap.customer.model.Customer;
+
 import com.google.common.collect.Lists;
 import edu.avans.hartigehap.web.util.*;
 
