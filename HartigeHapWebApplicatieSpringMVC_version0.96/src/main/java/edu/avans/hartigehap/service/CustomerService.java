@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import edu.avans.hartigehap.customer.model.Customer;
+
 import edu.avans.hartigehap.domain.*;
 
 

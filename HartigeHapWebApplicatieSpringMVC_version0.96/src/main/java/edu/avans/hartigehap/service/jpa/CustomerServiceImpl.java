@@ -18,6 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.avans.hartigehap.domain.*;
 import edu.avans.hartigehap.repository.*;
 import edu.avans.hartigehap.service.*;
+import edu.avans.hartigehap.customer.model.Customer;
+
 import com.google.common.collect.Lists;
 
 
